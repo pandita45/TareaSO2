@@ -1,0 +1,19 @@
+#include <stdio.h>
+#include <pthread.h>
+#include <stdlib.h>
+
+typedef struct{
+  int count;
+  int N;
+  int etapa;
+  pthread_mutex_t mutex;
+  pthread_cond_t cond;
+}barrera;
+
+void iniciar_barrera(barrera* barrera , int N){
+  barrera->N = N;
+  barrera->count = 0;
+  barrera->etapa = 0;
+  pthread_mutex_init(&barrera->mutex,NULL);
+  pthread_cond_init(&barrera->cond,NULL);
+}
