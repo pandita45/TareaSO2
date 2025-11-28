@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <pthread.h>
 #include <stdlib.h>
-
+#include "barrera.h"
 //Inicializamos la barrera, la funcion recibira una struct barrera y la cantidad de hebras 
 void iniciar_barrera(barrera* b , int N){
   b->N = N;

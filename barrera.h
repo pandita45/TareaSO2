@@ -11,7 +11,6 @@ typedef struct {
     pthread_mutex_t mutex;
     pthread_cond_t cond;
 } barrera;
-
 // Prototipos de funciones
 void iniciar_barrera(barrera* b, int N);
 void esperar(barrera* b);
