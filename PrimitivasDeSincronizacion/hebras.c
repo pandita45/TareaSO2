@@ -3,6 +3,7 @@
 #include <unistd.h>
 #include <stdlib.h>
 #include <pthread.h>
+#include <time.h>
 
 #define etapa 4   //Definimos la cantidad de etapas 
 barrera b;       // Creamos una barrera global para el trabajo
@@ -10,7 +11,7 @@ barrera b;       // Creamos una barrera global para el trabajo
 void* exec_hebra(void *arg){      // Funcion que ejecuta una hebra 
   int pthread_n = *(int*)arg;      //Recibimos el id de la hebra y lo casteamos a entero
   for(int e = 0; e < etapa; e++){
-    usleep(1000000);                // Simulamos el trabajo por cada etapa 
+    usleep(rand() % 10000000 + 1000000);                // Simulamos el trabajo por cada etapa 
     printf("Hebra numero %d esperando en etapa %d\n",pthread_n, e);
     esperar(&b);     //Llamamos a la funcion esperar de nuestra barrera 
     printf("Hebra numero %d paso barrera en etapa %d\n", pthread_n, e);
