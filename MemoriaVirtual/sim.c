@@ -4,12 +4,12 @@
 
 int main(int argc, char **argv){
     if (argc != 4){
+        printf("Uso: %s <numero_de_marcos> <tamano_de_pagina> <nombre_de_traza>\n", argv[0]);
         return -1;
     }
     int Nmarcos = atoi(argv[1]);
     int PAGE_SIZE = atoi(argv[2]);
     char *nombreTraza = argv[3];
-
 
     int b = calcularBitsOffset(PAGE_SIZE);
                 
@@ -31,7 +31,7 @@ int main(int argc, char **argv){
     int fallosDePagina = 0;
     int bitDeUso = 0;
 
-    while (fscanf(archivoTraza, "%lx\n", &dv) != EOF){
+    while (fscanf(archivoTraza, "%lx\n", &dv) != EOF){ 
         TotalReferencias++;
         int offset = dv & MASK;
         int npv = dv >> b;
@@ -73,7 +73,7 @@ int main(int argc, char **argv){
                     direccionFisica = (bitDeUso << b) | offset;
                     fueCargada = 1;
 
-                    printf("La pagina virtual %d se saco del marco fisico %d\n", npv_sacado, bitDeUso);
+                    printf("La pagina virtual %d se retiro del marco fisico %d\n", npv_sacado, bitDeUso);
                     printf("La pagina virtual %d se cargo en el marco fisico %d y la direccion fisica es %lx\n", npv, bitDeUso, direccionFisica);
                     break;
                 }
@@ -84,13 +84,11 @@ int main(int argc, char **argv){
             }
         }
     }
-
+    printf("Total de referencias: %d\n", TotalReferencias);
     printf("Tasa de errores de pagina: %.2f%%\n", (fallosDePagina / (float)TotalReferencias) * 100);
     printf("Numero de fallos de pagina: %d\n", fallosDePagina);
     free(RAM);
     free(tablaDePaginas);
     fclose(archivoTraza);
-
-    return 0;
-    
+    return 0; 
 }
