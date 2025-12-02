@@ -5,7 +5,7 @@
 #include <pthread.h>
 #include <time.h>
 
-#define etapa 4   //Definimos la cantidad de etapas 
+int etapa;          // Cantidad de etapas a ejecutar
 barrera b;       // Creamos una barrera global para el trabajo
  
 void* exec_hebra(void *arg){      // Funcion que ejecuta una hebra 
@@ -21,9 +21,16 @@ void* exec_hebra(void *arg){      // Funcion que ejecuta una hebra
 
   
 int main(int argc, char **argv){
-  int N = atoi(argv[1]);        // Guardamos en N la cantidad de hebras a utilizar 
+  if(argc != 3){                // Verificamos que se haya pasado la cantidad de hebras por parametro
+    printf("Uso: %s <numero_de_hebras>\n", argv[0]);
+    return -1;
+  }
+  int N = atoi(argv[1]);  
+  etapa = atoi(argv[2]);      // Guardamos en N la cantidad de hebras a utilizar 
   iniciar_barrera(&b,N);        // Inicializamos la barrera
   
+
+
   pthread_t hebras[N];          //Creamos arreglos para guardar cada hebrea y sus respectivo id
   int ids[N];
   
