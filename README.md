@@ -8,7 +8,7 @@
 Se necesita estar en el directorio "PrimitivasDeSincronizacion"
 ``` bash
 gcc -o Barrera hebras.c barrera.c -pthread
-./Barrera N    # Ejecuta el programa simulando el trabajo de N hebras
+./Barrera N B   # Ejecuta el programa simulando el trabajo de N hebras y B el numero de etapas del programa
 ```
 
 # Simulacion de memoria virtual (Parte 2)
